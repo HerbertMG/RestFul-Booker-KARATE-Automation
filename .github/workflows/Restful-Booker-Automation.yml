@@ -1,0 +1,49 @@
+name: restful-booker-testing-integration
+
+on:
+  push:
+    branches:
+      - main
+
+  schedule:
+    - cron: "00 00 * * THU"
+
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+
+      - name: Build and run tests
+        run: |
+          chmod +x mvnw
+          ./mvnw clean test
+
+  report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+
+      - name: Generate Karate HTML report
+        run: |
+          chmod +x mvnw
+          ./mvnw test -Dcucumber.options="--plugin html:target/karate-html-report"
+

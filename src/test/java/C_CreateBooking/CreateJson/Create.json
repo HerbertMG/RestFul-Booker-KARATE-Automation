@@ -1,0 +1,15 @@
+{
+  "firstname" : "Herbert",
+  "lastname" : "Melendez",
+  "totalprice" : 20000,
+  "depositpaid" : true,
+  "bookingdates" : {
+    "checkin" : "2024-01-07",
+    "checkout" : "2024-01-08"
+  },
+  "additionalneeds" : "Breakfast"
+}
+
+
+
+
