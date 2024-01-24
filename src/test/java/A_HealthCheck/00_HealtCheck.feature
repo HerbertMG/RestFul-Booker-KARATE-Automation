@@ -5,7 +5,7 @@ Feature: Confirmar funcionamiento de la api
 
   @Integracion
   Scenario: [TEST-001] - Confirmar si la api está disponible
-    Given url 'https://restful-booker.herokuapp.com'
+    Given url host
     And path '/ping'
     When method GET
     Then status 201

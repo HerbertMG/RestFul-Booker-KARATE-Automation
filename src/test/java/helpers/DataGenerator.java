@@ -1,6 +1,6 @@
 package helpers;
 
-import java.util. Random;
+import java.util.Random;
 
 public class DataGenerator {
     public static String generateRandomString(int range) {

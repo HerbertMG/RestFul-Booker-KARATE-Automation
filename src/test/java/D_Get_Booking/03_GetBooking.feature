@@ -7,10 +7,12 @@ Feature: Realizar una consulta de reserva por id
 
     Background:
       * def tramaValidate = read('classpath:D_Get_Booking/GetJson/ValidateGetBooking.json')
+      * header Accept = 'application/json'
 
     @Integracion
     Scenario Outline: [TEST-004] - Validar que se pueda consultar una reserva por su BookingId
-      Given url 'https://restful-booker.herokuapp.com/booking/'+ <id>
+      Given url host
+      And path '/booking/'+ <id>
       When method GET
       Then status 200
       Then match response == tramaValidate
@@ -18,5 +20,5 @@ Feature: Realizar una consulta de reserva por id
 
       Examples:
         | id   |
-        | 4444 |
+        | 1402 |
 

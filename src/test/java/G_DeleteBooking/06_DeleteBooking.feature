@@ -5,14 +5,21 @@ Feature: Eliminar una reserva
 
   Rule: Para eliminar la información de la reserva, el cliente debe estar autenticado.
 
+    Background:
+      ##Cabeceras
+      * header Content-Type = 'application/json'
+      ##Generacion de Token
+      * def createTokenReponse = call read('classpath:B_AuthTest/01_Auth.feature')
+      * def accessToken = createTokenReponse.response.token
+      ##Creacion de Reserva que se actualizará
+      * def createBookingResponse = call read('classpath:C_CreateBooking/02_CreateBooking.feature')
+      * def idReserva = createBookingResponse.response.bookingid
+
     @Integracion
-    Scenario Outline: [TEST-007] - Validar la eliminación de una reserva actual
-      Given call read('classpath:B_AuthTest/01_Auth.feature'
-      * url 'https://restful-booker.herokuapp.com/booking/'+ <id>
-      When method delete
+    Scenario: [TEST-007] - Validar la eliminación de una reserva actual
+      Given url host
+      * path '/booking/'+ idReserva
+      * cookie token = accessToken
+      When method DELETE
       Then status 201
       Then print response
-
-      Examples:
-        | id   |
-        | 4444 |

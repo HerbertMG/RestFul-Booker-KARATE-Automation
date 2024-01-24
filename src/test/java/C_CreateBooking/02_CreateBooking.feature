@@ -7,9 +7,9 @@ Feature: Crear una reserva
   son obligatorios para crear una reserva
 
     Background:
-
       * def tramaValidate = read('classpath:C_CreateBooking/CreateJson/ValidateCreate.json')
-
+      * header Content-Type = 'application/json'
+      * header Accept = 'application/json'
 
     @Integracion
     Scenario: [TEST-003] - Validar la creación de una nueva reserva
@@ -17,10 +17,9 @@ Feature: Crear una reserva
       And path '/booking'
       * def requestBody = read('classpath:C_CreateBooking/CreateJson/Create.json')
       And request requestBody
-      * print 'valores:', requestBody
       When method POST
       Then status 200
-      ##Then match response == tramaValidate
+      Then match response == tramaValidate
       * def idUser = response.bookingid
       Then print response
       Then print idUser
