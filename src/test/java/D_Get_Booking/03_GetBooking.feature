@@ -19,6 +19,6 @@ Feature: Realizar una consulta de reserva por id
       Then print response
 
       Examples:
-        | id   |
-        | 1402 |
+        | id |
+        | 13 |
 
